@@ -48,7 +48,7 @@ full_access: false
 # --- Add-on options (shown in HA UI) ----------------------------------------
 options:
   mistral_api_key: ""
-  active_model: "devstral-2"
+  active_model: "devstral-small-2"
   default_agent: "default"
   auto_approve: false
   auto_update_cli: true

@@ -5,7 +5,7 @@
 # are re-applied from the add-on options on every restart.
 # ==============================================================================
 
-active_model = "devstral-2"
+active_model = "devstral-small-2"
 vim_keybindings = false
 textual_theme = "textual-dark"
 auto_compact_threshold = 200000
