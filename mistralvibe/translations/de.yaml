@@ -36,3 +36,9 @@ configuration:
 
 network:
   7681/tcp: Web-Terminal (nur Ingress — kein Host-Port nötig)
+
+  session_persistence:
+    name: Session-Persistenz
+    description: >-
+      Terminal-Session beim Schließen des Browser-Tabs am Leben halten (via tmux).
+      Deaktivieren wenn Copy/Paste nicht funktioniert.
