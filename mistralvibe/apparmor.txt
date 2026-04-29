@@ -59,8 +59,8 @@ profile mistralvibe flags=(attach_disconnected,mediate_deleted) {
   /root/** rwk,
   /tmp/** rwk,
 
-  /init ix,
-  /run/s6/** ix,
+  /init ixr,
+  /run/s6/** ixr,
 
   signal,
 }
