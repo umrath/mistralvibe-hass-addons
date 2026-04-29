@@ -1,5 +1,5 @@
 name: Mistral Vibe
-version: "1.3.3"
+version: "1.3.4"
 slug: mistralvibe
 description: >-
   Run Mistral Vibe CLI (Devstral 2) directly inside Home Assistant.
@@ -40,7 +40,6 @@ hassio_role: manager
 host_network: false
 host_pid: false
 host_dbus: false
-privileged: []
 full_access: false
 
 # --- Add-on options (shown in HA UI) ----------------------------------------
