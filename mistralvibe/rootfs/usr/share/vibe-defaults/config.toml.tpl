@@ -9,6 +9,7 @@ enable_update_checks = true
 enable_telemetry = false
 api_timeout = 720.0
 disable_welcome_banner_animation = true
+system_prompt_id = "ha"
 
 [project_context]
 max_chars = 60000
