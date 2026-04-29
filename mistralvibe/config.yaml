@@ -1,5 +1,5 @@
 name: Mistral Vibe
-version: "1.1.0"
+version: "1.1.1"
 slug: mistralvibe
 description: >-
   Run Mistral Vibe CLI (Devstral 2) directly inside Home Assistant.
@@ -9,9 +9,6 @@ url: https://github.com/umrath/mistralvibe-hass-addons/tree/main/mistralvibe
 arch:
   - amd64
   - aarch64
-  - armv7
-  - armhf
-  - i386
 
 # --- Networking / UI ---------------------------------------------------------
 ingress: true
