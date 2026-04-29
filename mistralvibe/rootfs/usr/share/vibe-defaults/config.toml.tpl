@@ -1,7 +1,7 @@
 active_model = "devstral-small-2"
 vim_keybindings = false
 textual_theme = "textual-dark"
-auto_compact_threshold = 200000
+auto_compact_threshold = 100000
 context_warnings = true
 include_model_info = true
 include_project_context = true
