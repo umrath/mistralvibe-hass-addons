@@ -1,0 +1,13 @@
+.git
+.github
+.gitignore
+.dockerignore
+*.md
+!README.md
+!DOCS.md
+!CHANGELOG.md
+.editorconfig
+.idea
+.vscode
+__pycache__
+*.pyc

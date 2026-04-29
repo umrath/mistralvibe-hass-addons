@@ -1,0 +1,38 @@
+configuration:
+  mistral_api_key:
+    name: Mistral API-Key
+    description: >-
+      API-Key von https://console.mistral.ai/. Wird sicher in
+      /data/vibe/.env innerhalb des Add-ons gespeichert.
+  active_model:
+    name: Aktives Modell
+    description: >-
+      Standard-Mistral-Modell für neue Sitzungen. Kann jederzeit innerhalb
+      von Vibe mit dem /config-Befehl geändert werden.
+  default_agent:
+    name: Standard-Agent
+    description: >-
+      "default" verlangt vor jedem Tool-Aufruf eine Bestätigung. "plan" ist
+      ein Read-only-Agent, der deine Konfiguration erkunden, aber nichts
+      schreiben oder ausführen kann.
+  auto_approve:
+    name: Tool-Aufrufe automatisch zulassen
+    description: >-
+      Überspringt die Bestätigung vor jedem Tool-Aufruf. Schneller, aber
+      riskanter — nur aktivieren, wenn du genau weißt, was du tust.
+  auto_update_cli:
+    name: Vibe CLI automatisch aktualisieren
+    description: >-
+      Erlaubt der mitgelieferten Mistral Vibe CLI, sich beim Start zu
+      aktualisieren, sobald eine neuere Version auf PyPI verfügbar ist.
+  enable_telemetry:
+    name: Vibe-Telemetrie aktivieren
+    description: >-
+      Setzt das interne Telemetrie-Flag von Vibe. Standardmäßig aus.
+  log_level:
+    name: Log-Level
+    description: >-
+      Detailgrad des zugrundeliegenden Terminal-Servers (ttyd).
+
+network:
+  7681/tcp: Web-Terminal (nur Ingress — kein Host-Port nötig)

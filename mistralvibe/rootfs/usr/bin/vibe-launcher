@@ -1,0 +1,59 @@
+#!/bin/bash
+# ==============================================================================
+# vibe-launcher – the command that the user lands on inside the web terminal.
+# Loads the API keys, applies the add-on options and execs the Vibe CLI.
+# ==============================================================================
+set -e
+
+VIBE_HOME="${VIBE_HOME:-/data/vibe}"
+export VIBE_HOME
+
+# Load API keys + HA bridge into the environment
+if [ -f "${VIBE_HOME}/.env" ]; then
+    set -a
+    # shellcheck disable=SC1091
+    . "${VIBE_HOME}/.env"
+    set +a
+fi
+
+# Read the add-on toggles persisted by 10-init-vibe.sh
+AUTO_APPROVE="$(cat "${VIBE_HOME}/.auto_approve" 2>/dev/null || echo "false")"
+DEFAULT_AGENT="$(cat "${VIBE_HOME}/.default_agent" 2>/dev/null || echo "default")"
+
+ARGS=()
+if [ "${DEFAULT_AGENT}" = "plan" ]; then
+    ARGS+=(--agent plan)
+fi
+if [ "${AUTO_APPROVE}" = "true" ]; then
+    ARGS+=(--auto-approve)
+fi
+
+cd /config
+
+cat <<'BANNER'
+
+  __  __ _     _             _   __     ___ _
+ |  \/  (_)___| |_ _ __ __ _| |  \ \   / (_) |__   ___
+ | |\/| | / __| __| '__/ _` | |   \ \ / /| | '_ \ / _ \
+ | |  | | \__ \ |_| | | (_| | |    \ V / | | |_) |  __/
+ |_|  |_|_|___/\__|_|  \__,_|_|     \_/  |_|_.__/ \___|
+
+  Mistral Vibe CLI inside Home Assistant
+  Working dir : /config        (your HA config)
+  HA bridge   : hass-mcp via Supervisor API
+  State dir   : /data/vibe     (config + history persist here)
+
+  Type:  vibe                  start an interactive session
+         vibe --help           show all options
+         vibe --prompt "..."   one-shot, scripted run
+         exit                  leave Vibe and drop to a shell
+
+BANNER
+
+vibe "${ARGS[@]}" "$@" || true
+
+echo
+echo "Vibe exited. You're now in a regular shell. Type 'vibe-launcher' to"
+echo "restart Vibe, or close this browser tab to end the session."
+echo
+exec bash --login

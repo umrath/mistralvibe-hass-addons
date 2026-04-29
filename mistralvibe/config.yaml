@@ -1,0 +1,72 @@
+name: Mistral Vibe
+version: "1.0.0"
+slug: mistralvibe
+description: >-
+  Run Mistral Vibe CLI (Devstral 2) directly inside Home Assistant.
+  Create automations, debug configurations and manage your smart home with
+  natural language through a browser terminal.
+url: https://github.com/YOUR_USER/mistralvibe-hass-addons/tree/main/mistralvibe
+arch:
+  - amd64
+  - aarch64
+  - armv7
+  - armhf
+  - i386
+
+# --- Networking / UI ---------------------------------------------------------
+ingress: true
+ingress_port: 7681
+panel_icon: mdi:robot-outline
+panel_title: Mistral Vibe
+init: false
+
+# --- Persistent state --------------------------------------------------------
+# /data is the persistent volume HA gives every add-on. We store the Vibe
+# config dir, command history and trusted-folders database there.
+map:
+  - config:rw
+  - addon_config:rw
+  - share:rw
+  - ssl:ro
+  - media:rw
+
+# --- Home Assistant API access ----------------------------------------------
+# These give the add-on a SUPERVISOR_TOKEN that can talk to the HA Core REST
+# API. The hass-mcp MCP server uses this token to expose entities, services,
+# automations, etc. to Vibe – no manual long-lived token needed.
+hassio_api: true
+homeassistant_api: true
+auth_api: true
+hassio_role: manager
+
+# --- Host integrations -------------------------------------------------------
+host_network: false
+host_pid: false
+host_dbus: false
+privileged: []
+full_access: false
+
+# --- Add-on options (shown in HA UI) ----------------------------------------
+options:
+  mistral_api_key: ""
+  active_model: "devstral-2"
+  default_agent: "default"
+  auto_approve: false
+  auto_update_cli: true
+  enable_telemetry: false
+  log_level: info
+
+schema:
+  mistral_api_key: password
+  active_model: list(devstral-2|devstral-small-2|magistral-medium|mistral-medium-latest|codestral-latest)?
+  default_agent: list(default|plan)?
+  auto_approve: bool?
+  auto_update_cli: bool?
+  enable_telemetry: bool?
+  log_level: list(trace|debug|info|notice|warning|error|fatal)?
+
+# --- Apparmor & startup ------------------------------------------------------
+apparmor: true
+startup: services
+boot: auto
+stage: experimental

@@ -1,0 +1,51 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Service: vibe-terminal
+# Serves a writable browser terminal on the HA ingress port. Each browser
+# session opens a fresh bash that immediately exec's vibe-launcher, so users
+# land directly in Mistral Vibe.
+# ==============================================================================
+
+# Make sure VIBE_HOME and the API env vars from .env are available to ttyd's
+# child shells.
+export VIBE_HOME=/data/vibe
+if [ -f "${VIBE_HOME}/.env" ]; then
+    set -a
+    # shellcheck disable=SC1091
+    . "${VIBE_HOME}/.env"
+    set +a
+fi
+
+# Persistent shell history per user so it survives container restarts.
+mkdir -p /data/vibe/.bash
+export HISTFILE=/data/vibe/.bash/history
+
+# A tiny bashrc so users who type `bash` to drop out of vibe still get the
+# right env + a prompt that says where they are.
+cat > /root/.bashrc <<'EOF'
+export VIBE_HOME=/data/vibe
+[ -f "${VIBE_HOME}/.env" ] && { set -a; . "${VIBE_HOME}/.env"; set +a; }
+export PS1='\[\e[1;35m\]vibe\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]$ '
+export HISTFILE=/data/vibe/.bash/history
+alias vibe-restart='pkill -f mistral-vibe || true; vibe-launcher'
+EOF
+
+LOG_LEVEL="$(bashio::config 'log_level')"
+case "${LOG_LEVEL}" in
+    trace|debug) TTYD_DEBUG="-d 7" ;;
+    info|notice) TTYD_DEBUG="-d 3" ;;
+    *)           TTYD_DEBUG="-d 1" ;;
+esac
+
+bashio::log.info "Starting ttyd on port 7681 (HA ingress)"
+
+exec ttyd \
+    --port 7681 \
+    --interface 0.0.0.0 \
+    --writable \
+    --max-clients 4 \
+    -t titleFixed="Mistral Vibe" \
+    -t fontSize=14 \
+    -t 'theme={"background":"#0f0f17","foreground":"#e6e6f0","cursor":"#ff7a90"}' \
+    ${TTYD_DEBUG} \
+    bash -c 'exec /usr/bin/vibe-launcher'
