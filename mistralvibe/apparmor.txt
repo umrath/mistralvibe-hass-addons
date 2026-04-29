@@ -6,33 +6,58 @@ profile mistralvibe flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/nameservice>
   #include <abstractions/ssl_certs>
 
-  # Capabilities the add-on may need:
-  #  - dac_override / dac_read_search: read /data, /config across UID boundaries
-  #  - net_bind_service: ttyd binds tcp/7681 inside the container
-  #  - setgid / setuid: s6-overlay drops privileges between supervisor and svc
-  #  - sys_chroot: s6 uses chroot for the supervision tree
-  capability dac_override,
-  capability dac_read_search,
-  capability fowner,
-  capability fsetid,
-  capability kill,
-  capability net_bind_service,
+  capability net_admin,
+  capability net_raw,
   capability setgid,
   capability setuid,
-  capability sys_chroot,
+  capability chown,
+  capability fowner,
+  capability dac_override,
+  capability dac_read_search,
+  capability sys_tty_config,
 
-  # Filesystem: allow read/write/exec everywhere inside the container.
-  # The actual surface is already constrained by the bind mounts declared in
-  # config.yaml (only /data, /config, /share, /media, /addon_config, /ssl).
-  file,
+  network,
 
-  # Signals – needed so s6-overlay can stop the service tree on shutdown.
+  /dev/ptmx rw,
+  /dev/pts/* rw,
+  /dev/tty* rw,
+  /dev/null rw,
+  /dev/zero r,
+  /dev/urandom r,
+
+  /etc/** r,
+  /usr/** r,
+  /lib/** r,
+  /proc/** r,
+  /sys/** r,
+
+  /bin/** ixr,
+  /usr/bin/** ixr,
+  /usr/lib/** ixmr,
+  /usr/local/** ixr,
+  /usr/libexec/** ixr,
+  /opt/** ixmr,
+
+  /data/** rwk,
+
+  /homeassistant/ r,
+  /homeassistant/** rwk,
+  /config/ r,
+  /config/** rwk,
+  /ssl/ r,
+  /ssl/** r,
+  /share/ r,
+  /share/** rwk,
+  /media/ r,
+  /media/** rwk,
+  /backup/ r,
+  /backup/** r,
+  /addon_configs/ r,
+  /addon_configs/** rwk,
+
+  /root/ r,
+  /root/** rwk,
+  /tmp/** rwk,
+
   signal,
-
-  # Network – HA ingress, Supervisor API, Mistral API, MCP stdio sockets.
-  network inet stream,
-  network inet6 stream,
-  network unix stream,
-  network unix dgram,
-  network netlink raw,
 }

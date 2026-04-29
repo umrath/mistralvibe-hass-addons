@@ -1,5 +1,5 @@
 name: Mistral Vibe
-version: "1.2.4"
+version: "1.2.5"
 slug: mistralvibe
 description: >-
   Run Mistral Vibe CLI (Devstral 2) directly inside Home Assistant.
@@ -25,6 +25,7 @@ map:
   - share:rw
   - ssl:ro
   - media:rw
+  - backup:ro
 
 # --- Home Assistant API access ----------------------------------------------
 # These give the add-on a SUPERVISOR_TOKEN that can talk to the HA Core REST
