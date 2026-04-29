@@ -24,7 +24,7 @@ disable_welcome_banner_animation = true
 name = "mistral"
 api_base = "https://api.mistral.ai/v1"
 api_key_env_var = "MISTRAL_API_KEY"
-backend = "MISTRAL"
+backend = "mistral"
 
 # ---------- Models -----------------------------------------------------------
 [[models]]

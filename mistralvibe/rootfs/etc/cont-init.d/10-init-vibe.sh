@@ -40,10 +40,8 @@ EOF
 chmod 600 "${ENV_FILE}"
 
 # ---------- config.toml (created on first start, preserved afterwards) -------
-if [ ! -f "${CONFIG_FILE}" ]; then
-    bashio::log.info "Creating fresh Vibe config at ${CONFIG_FILE}"
-    cp /usr/share/vibe-defaults/config.toml.tpl "${CONFIG_FILE}"
-fi
+bashio::log.info "Writing Vibe config from template to ${CONFIG_FILE}"
+cp /usr/share/vibe-defaults/config.toml.tpl "${CONFIG_FILE}"
 
 # Always overwrite the managed-by-addon settings so HA options stay authoritative
 python3 - "$CONFIG_FILE" "$ACTIVE_MODEL" "$AUTO_UPDATE_CLI" "$ENABLE_TELEMETRY" <<'PY'
