@@ -51,9 +51,9 @@ print(matches[-1] if matches else sys.argv[2])
     fi
 }
 
-MODEL_DEVSTRAL_SMALL="$(resolve_model 'devstral-small-2' 'devstral-small-2512')"
-MODEL_DEVSTRAL="$(resolve_model 'devstral-2' 'devstral-2512')"
-MODEL_MAGISTRAL="$(resolve_model 'magistral-medium' 'magistral-medium-2506')"
+MODEL_DEVSTRAL_SMALL="devstral-small-2"
+MODEL_DEVSTRAL="devstral-2"
+MODEL_MAGISTRAL="magistral-medium-latest"
 
 bashio::log.info "Models: small=${MODEL_DEVSTRAL_SMALL} large=${MODEL_DEVSTRAL} magistral=${MODEL_MAGISTRAL}"
 
