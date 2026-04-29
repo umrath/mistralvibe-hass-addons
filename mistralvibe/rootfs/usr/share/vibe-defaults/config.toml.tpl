@@ -23,6 +23,33 @@ tool_paths = []
 enabled_tools = []
 disabled_tools = []
 
+[[providers]]
+name = "mistral"
+api_base = "https://api.mistral.ai/v1"
+api_key_env_var = "MISTRAL_API_KEY"
+backend = "mistral"
+
+[[models]]
+name = "devstral-small-2505"
+provider = "mistral"
+alias = "devstral-small-2"
+input_price = 0.1
+output_price = 0.3
+
+[[models]]
+name = "devstral-2505"
+provider = "mistral"
+alias = "devstral-2"
+input_price = 0.4
+output_price = 2.0
+
+[[models]]
+name = "magistral-medium-2506"
+provider = "mistral"
+alias = "magistral-medium"
+input_price = 2.0
+output_price = 5.0
+
 [[mcp_servers]]
 name = "hass"
 transport = "stdio"
