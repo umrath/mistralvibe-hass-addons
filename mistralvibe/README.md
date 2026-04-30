@@ -2,8 +2,7 @@
 
 Run [Mistral Vibe CLI](https://github.com/mistralai/mistral-vibe) (Mistral AI's
 open-source agentic coding agent powered by Devstral 2) directly inside Home
-Assistant. Browser terminal in the sidebar, full HA API access through
-`hass-mcp`, persistent state under `/data/vibe`.
+Assistant. Browser terminal in the sidebar, full HA API access through a custom MCP server, persistent state under `/data/vibe`.
 
 ## Quick start
 
@@ -19,7 +18,7 @@ details.
 
 ## Drop-in alternative to `claudecode`
 
-This add-on is a fork of
+This app is inspired by
 [robsonfelix/claudecode](https://github.com/robsonfelix/robsonfelix-hass-addons),
 adapted for Mistral Vibe instead of Claude Code. Same UX, same MCP-based HA
 integration, different (open-weight) engine. Both apps can run side-by-side.

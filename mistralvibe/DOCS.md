@@ -3,12 +3,12 @@
 Run **Mistral Vibe CLI** (Mistral AI's open-source agentic coding agent powered
 by Devstral 2) directly inside Home Assistant. Talk to your smart home in
 natural language through a browser terminal that has full access to entities,
-services, automations and YAML configs via the `hass-mcp` MCP server.
+services, automations and YAML configs via a custom MCP server.
 
 ## What you get
 
 - A web terminal in the HA sidebar (no SSH, no separate IDE)
-- Multi-file editing across `/config`, `/share` and `/addon_config`
+- Multi-file editing across `/config`, `/share` and `/media`
 - Live entity & service inspection via the Supervisor API
 - Persistent sessions, command history and conversation logs in `/data/vibe`
 - Open-source, Apache 2.0 licensed CLI on top of open-weight Devstral models
@@ -76,7 +76,6 @@ directly in a Vibe session if you want full control.
 | --- | --- |
 | `/config` | Your Home Assistant configuration (mounted RW). Vibe's working dir. |
 | `/share` | Shared data (mounted RW). |
-| `/addon_config` | Configurable per-add-on data (mounted RW). |
 | `/media` | Media folder (mounted RW). |
 | `/ssl` | TLS certificates (mounted RO). |
 | `/data/vibe` | Vibe state: `config.toml`, `.env`, `agents/`, `prompts/`, `logs/session/`, command history. Persists across restarts and updates. |
@@ -99,16 +98,14 @@ directly in a Vibe session if you want full control.
                                          │ stdio
                                          ▼
                               ┌──────────────────────────┐
-                              │  hass-mcp (uvx)          │  ──REST──▶  HA Core
-                              │  HA_URL, HA_TOKEN env    │   /api/states
+                              │  custom MCP server       │  ──REST──▶  HA Core
+                              │  (server.py + fastmcp)   │   /api/states
                               └──────────────────────────┘   /api/services
 ```
 
 `vibe-launcher` is the entry-point that loads the API key from `.env`,
 applies the `auto_approve` / `default_agent` flags from app options and
-execs the CLI. The hass-mcp server is started on demand by Vibe, as a stdio
-child process, and inherits `HA_URL=http://supervisor/core` plus the
-`SUPERVISOR_TOKEN`.
+execs the CLI. The custom MCP server (`/usr/share/ha-mcp/server.py`) is started on demand by Vibe as a stdio child process. It receives `HA_URL` and `HA_TOKEN` via `[mcp_servers.env]` in `config.toml`.
 
 ## Switching models on the fly
 
@@ -148,7 +145,7 @@ fully supported.
 | Default model | Claude Sonnet | Devstral 2 (123B, open weights) |
 | Auth | Anthropic OAuth (long URL flow) | Mistral API key in app options |
 | Local inference | No | Yes (via Ollama / vLLM / on-prem) |
-| HA bridge | hass-mcp via stdio | hass-mcp via stdio (same lib) |
+| HA bridge | hass-mcp via stdio | custom FastMCP server via stdio |
 | Web UI | ttyd terminal in ingress | ttyd terminal in ingress |
 | State dir | `/data/claude` | `/data/vibe` |
 
@@ -171,6 +168,5 @@ different state directories.
 ## Credits
 
 - [Mistral AI](https://mistral.ai) — Devstral 2 and Mistral Vibe CLI
-- [voska/hass-mcp](https://github.com/voska/hass-mcp) — Home Assistant MCP server
 - [tsl0922/ttyd](https://github.com/tsl0922/ttyd) — browser terminal
 - [robsonfelix/robsonfelix-hass-addons](https://github.com/robsonfelix/robsonfelix-hass-addons) — the Claude Code add-on this is structurally based on
