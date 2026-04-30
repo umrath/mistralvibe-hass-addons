@@ -47,6 +47,17 @@ RUN curl -LsSf https://astral.sh/uv/install.sh \
  && python3 -m pip install --break-system-packages --no-cache-dir fastmcp httpx \
  && rm -rf /root/.cache /tmp/*
 
+
+ARG BUILD_ARCH=amd64
+RUN case "${BUILD_ARCH}" in \
+        amd64)   HA_ARCH="amd64" ;; \
+        aarch64) HA_ARCH="aarch64" ;; \
+        *)       HA_ARCH="amd64" ;; \
+    esac && \
+    curl -fsSL "https://github.com/home-assistant/cli/releases/latest/download/ha_${HA_ARCH}" \
+        -o /usr/local/bin/ha && \
+    chmod +x /usr/local/bin/ha
+
 # ---- add-on rootfs ---------------------------------------------------------
 COPY rootfs/ /
 
@@ -63,5 +74,5 @@ LABEL \
     io.hass.name="Mistral Vibe" \
     io.hass.description="Run Mistral Vibe CLI directly inside Home Assistant" \
     io.hass.type="app" \
-    io.hass.version="1.7.3" \
+    io.hass.version="1.7.4" \
     maintainer="umrath <thoralf@umrath.net>"
