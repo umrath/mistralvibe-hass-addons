@@ -14,9 +14,35 @@ services, automations and YAML configs via the `hass-mcp` MCP server.
 - Open-source, Apache 2.0 licensed CLI on top of open-weight Devstral models
 - A read-only "plan" mode for exploration without any writes
 
+## API Key & Kosten
+
+Mistral Vibe unterstützt zwei Abrechnungsmodelle:
+
+### Le Chat Pro (empfohlen für intensive Nutzung)
+
+Le Chat Pro beinhaltet ein monatliches Vibe-Budget das auch mit der CLI – und damit mit dieser App – genutzt werden kann.
+
+1. Abo abschließen unter https://chat.mistral.ai
+2. API-Key erstellen unter **Studio → Codestral → API keys**
+3. Diesen Key als `mistral_api_key` in der App-Konfiguration eintragen
+
+Wenn das monatliche Budget aufgebraucht ist, wird Vibe standardmäßig bis zur nächsten Abrechnungsperiode deaktiviert. Im Mistral Admin Panel kann optional Pay-as-you-go aktiviert werden, damit es nahtlos weiterläuft.
+
+> **Hinweis:** Le Chat Pro über Partner-Angebote (Google, Apple, Free Mobile, Orange) unterstützt Pay-as-you-go nach Budgetausschöpfung nicht.
+
+### Pay-as-you-go (Experiment / Scale Plan)
+
+Für gelegentliche Nutzung oder zum Ausprobieren:
+
+1. Account erstellen unter https://console.mistral.ai
+2. API-Key erstellen unter **Studio → Organization → API keys**
+3. Key als `mistral_api_key` eintragen
+
+Abrechnung per Token. Aktuelle Preise: Devstral Small 2 ab $0.10/1M Input-Token, Devstral 2 ab $0.40/1M Input-Token.
+
 ## First-time setup
 
-1. Create a Mistral API key at https://console.mistral.ai/.
+1. Erstelle einen Mistral API-Key (siehe **API Key & Kosten** oben).
 2. Open this app, switch to the **Configuration** tab and paste your key
    into `mistral_api_key`. Save.
 3. Start the app. Open the **Web UI** (or the sidebar entry).
