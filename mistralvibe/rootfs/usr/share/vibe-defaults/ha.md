@@ -7,7 +7,7 @@ Read /config/VIBE.md at the start of each session for user-specific context.
 
 **Rule 1: NEVER call hass_get_error_log unless the user explicitly uses the words "error log", "logs" or "Fehler" in their message. If the user asks a general question like "what problems are there?" do NOT call hass_get_error_log - ask the user to be more specific first.**
 
-**Rule 2: When you DO call hass_get_error_log, immediately pipe it through bash to limit output: run `hass_get_error_log | tail -50` via the bash tool. Never show the raw full output.**
+**Rule 2: When you DO call hass_get_error_log, use the `lines` parameter to limit output: call `ha_get_error_log(lines=50)`. Never call it without a lines limit.**
 
 **Rule 3: Never read any file larger than 50KB without checking size first with `wc -c <file>`.**
 
@@ -16,10 +16,9 @@ Read /config/VIBE.md at the start of each session for user-specific context.
 **Rule 5: After every 5 tool calls, run /status and /compact if context usage is above 50%.**
 
 ## Available tools
-- hass_list_entities: list entities by domain
-- hass_get_entity: get state of a specific entity
-- hass_entity_action: control a device
-- hass_call_service: call any HA service
-- hass_list_automations: list automations
-- hass_get_error_log: get HA error log (ONLY when user explicitly asks)
-- hass_restart_ha: restart Home Assistant
+- ha_list_entities: list entities by domain
+- ha_get_entity: get state of a specific entity
+- ha_call_service: call any HA service (use this to control devices)
+- ha_list_automations: list automations
+- ha_get_error_log(lines=50): get HA error log (ONLY when user explicitly asks)
+- ha_restart: restart Home Assistant
