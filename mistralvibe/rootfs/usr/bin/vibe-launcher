@@ -1,22 +1,15 @@
 #!/bin/bash
-# ==============================================================================
-# vibe-launcher – the command that the user lands on inside the web terminal.
-# Loads the API keys, applies the add-on options and execs the Vibe CLI.
-# ==============================================================================
 set -e
 
 VIBE_HOME="${VIBE_HOME:-/data/vibe}"
 export VIBE_HOME
 
-# Load API keys + HA bridge into the environment
 if [ -f "${VIBE_HOME}/.env" ]; then
     set -a
-    # shellcheck disable=SC1091
     . "${VIBE_HOME}/.env"
     set +a
 fi
 
-# Read the add-on toggles persisted by 10-init-vibe.sh
 AUTO_APPROVE="$(cat "${VIBE_HOME}/.auto_approve" 2>/dev/null || echo "false")"
 DEFAULT_AGENT="$(cat "${VIBE_HOME}/.default_agent" 2>/dev/null || echo "default")"
 
@@ -40,7 +33,7 @@ cat <<'BANNER'
 
   Mistral Vibe CLI inside Home Assistant
   Working dir : /config        (your HA config)
-  HA bridge   : hass-mcp via Supervisor API
+  HA bridge   : custom MCP server
   State dir   : /data/vibe     (config + history persist here)
 
   Type:  vibe                  start an interactive session
