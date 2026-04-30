@@ -60,4 +60,3 @@ startup_timeout_sec = 30
 
 [mcp_servers.env]
 HA_URL = "__HA_URL__"
-HA_TOKEN = "__HA_TOKEN__"
