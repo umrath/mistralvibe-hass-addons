@@ -14,6 +14,7 @@ cat > /root/.bashrc <<'BASHRC'
 export VIBE_HOME=/data/vibe
 [ -f "${VIBE_HOME}/.env" ] && { set -a; . "${VIBE_HOME}/.env"; set +a; }
 export PS1='\[\e[1;35m\]vibe\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]$ '
+export SUPERVISOR_TOKEN="${HA_TOKEN}"
 export HISTFILE=/data/vibe/.bash/history
 alias vibe-restart='pkill -f mistral-vibe || true; vibe-launcher'
 alias v='vibe-launcher'
