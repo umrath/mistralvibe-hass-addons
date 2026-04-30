@@ -130,3 +130,9 @@ All notable changes to this app will be documented in this file.
 ### Fixed
 - Documentation: replaced outdated hass-mcp references with custom MCP server
 - Removed addon_config from filesystem layout (not mounted)
+
+## 1.7.5 — 2026-04-30
+
+### Fixed
+- SUPERVISOR_TOKEN exported in bashrc so ha CLI authenticates automatically
+
