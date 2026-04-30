@@ -7,7 +7,7 @@ If it fries your Home Assistant setup, burns your servers, eats your cats or buy
 
 You have been warned!
 
-# Mistral Vibe – Home Assistant Apps
+# Mistral Vibe – Home Assistant App
 
 Home Assistant app that runs **Mistral Vibe CLI** (Mistral AI's open-source
 agentic coding assistant powered by Devstral 2) directly inside Home Assistant.
