@@ -7,19 +7,19 @@ If it fries your Home Assistant setup, burns your servers, eats your cats or buy
 
 You have been warned!
 
-# Mistral Vibe – Home Assistant Add-ons
+# Mistral Vibe – Home Assistant Apps
 
-Home Assistant add-on that runs **Mistral Vibe CLI** (Mistral AI's open-source
+Home Assistant app that runs **Mistral Vibe CLI** (Mistral AI's open-source
 agentic coding assistant powered by Devstral 2) directly inside Home Assistant.
 It is a drop-in alternative to the
 [robsonfelix/claudecode](https://github.com/robsonfelix/robsonfelix-hass-addons)
-add-on, with the same browser-based terminal experience and MCP-based access to
+app, with the same browser-based terminal experience and MCP-based access to
 the full Home Assistant API – just running on Mistral models instead of
 Anthropic's Claude.
 
 ## What's inside
 
-| Add-on | Description |
+| App | Description |
 | --- | --- |
 | **Mistral Vibe** (`./mistralvibe`) | Browser terminal running Mistral Vibe CLI with full Home Assistant integration via the `hass-mcp` MCP server. |
 
@@ -27,15 +27,15 @@ Anthropic's Claude.
 
 In Home Assistant:
 
-1. Go to **Settings → Add-ons → Add-on Store**.
+1. Go to **Settings → Apps → App Store**.
 2. Open the menu (⋮) in the top right and select **Repositories**.
 3. Add the URL of this repository.
-4. Install the **Mistral Vibe** add-on, configure your Mistral API key, start it,
+4. Install the **Mistral Vibe** app, configure your Mistral API key, start it,
    and open the web UI.
 
 ## Why a "fork"?
 
-The original `claudecode` add-on is excellent but locks you into Anthropic's
+The original `claudecode` app is excellent but locks you into Anthropic's
 ecosystem. Mistral's Devstral 2 family is open-weight (modified MIT / Apache
 2.0), substantially cheaper per token, and can be run locally. This app keeps
 the same UX while swapping the engine.
