@@ -33,12 +33,13 @@ In Home Assistant:
 4. Install the **Mistral Vibe** add-on, configure your Mistral API key, start it,
    and open the web UI.
 
-## Why a fork?
+## Why a "fork"?
 
 The original `claudecode` add-on is excellent but locks you into Anthropic's
 ecosystem. Mistral's Devstral 2 family is open-weight (modified MIT / Apache
-2.0), substantially cheaper per token, and can be run locally. This fork keeps
+2.0), substantially cheaper per token, and can be run locally. This app keeps
 the same UX while swapping the engine.
+(It's not really a fork but a re-implementation - but heavily inspired by it - hence "fork".)
 
 ## License
 
