@@ -62,6 +62,6 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
 LABEL \
     io.hass.name="Mistral Vibe" \
     io.hass.description="Run Mistral Vibe CLI directly inside Home Assistant" \
-    io.hass.type="addon" \
-    io.hass.version="1.6.7" \
+    io.hass.type="app" \
+    io.hass.version="1.6.8" \
     maintainer="umrath <thoralf@umrath.net>"

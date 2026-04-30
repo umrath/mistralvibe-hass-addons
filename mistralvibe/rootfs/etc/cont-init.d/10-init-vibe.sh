@@ -65,7 +65,7 @@ ha core logs 2>&1 | grep -iE "(error|exception)"
 - ha_get_entity(entity_id): get state and attributes of a specific entity
 - ha_call_service(domain, service, data): call any HA service (use this to control devices)
 - ha_list_automations(search, limit): list automations
-- ha_get_areas(): list all areas
+- ha_list_areas(): list all areas
 - ha_get_config(): get HA core configuration
 - ha_get_history(entity_id, hours): get state history for an entity
 - ha_get_error_log(lines=50): get HA error log (ONLY when user explicitly asks)
