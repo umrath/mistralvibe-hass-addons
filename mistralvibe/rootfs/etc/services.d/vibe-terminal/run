@@ -17,6 +17,7 @@ export PS1='\[\e[1;35m\]vibe\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]$ '
 export SUPERVISOR_TOKEN="${HA_TOKEN}"
 export HISTFILE=/data/vibe/.bash/history
 alias vibe-restart='pkill -f mistral-vibe || true; vibe-launcher'
+alias mobile='tmux detach 2>/dev/null || echo "Not in tmux session"'
 alias v='vibe-launcher'
 alias ha-config='cd /config && ls'
 alias ha-logs='ha core logs 2>&1 | tail -50'
@@ -41,7 +42,7 @@ set -g mouse on
 set -g history-limit 10000
 set -g default-terminal "xterm-256color"
 TMUXEOF
-    TERMINAL_CMD="tmux new-session -A -s vibe '/usr/bin/vibe-launcher'"
+    TERMINAL_CMD="tmux new-session -A -s vibe '/usr/bin/vibe-launcher'; bash"
 else
     TERMINAL_CMD="/usr/bin/vibe-launcher"
 fi

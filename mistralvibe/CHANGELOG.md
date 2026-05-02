@@ -136,3 +136,9 @@ All notable changes to this app will be documented in this file.
 ### Fixed
 - Increased xterm.js scrollSensitivity for better touch scrolling on iOS HA app
 
+
+## 1.8.0 — 2026-05-02
+
+### Added
+- mobile command: detaches tmux for native iOS scrolling. Use 'v' to re-enter Vibe.
+
