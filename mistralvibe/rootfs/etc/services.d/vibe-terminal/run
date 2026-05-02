@@ -37,7 +37,7 @@ THEME="$(bashio::config 'terminal_theme')"
 
 THEME_JSON="$([ "${THEME:-dark}" = "light" ] && echo '{"background":"#eff1f5","foreground":"#4c4f69","cursor":"#dc8a78"}' || echo '{"background":"#0f0f17","foreground":"#e6e6f0","cursor":"#ff7a90"}')"
 
-TTYD_OPTS="--writable --max-clients 5 --ping-interval 30 -t scrollback=20000 -t titleFixed=Mistral Vibe -t fontSize=${FONT_SIZE:-14} -t theme=${THEME_JSON} ${TTYD_DEBUG}"
+TTYD_OPTS="--writable --max-clients 5 --ping-interval 30 -t scrollback=20000 -t titleFixed=MistralVibe -t fontSize=${FONT_SIZE:-14} -t theme=${THEME_JSON} ${TTYD_DEBUG}"
 
 if [ "${SESSION_PERSISTENCE}" = "true" ]; then
     mkdir -p /root/.config/tmux
