@@ -142,3 +142,10 @@ All notable changes to this app will be documented in this file.
 ### Added
 - mobile command: detaches tmux for native iOS scrolling. Use 'v' to re-enter Vibe.
 
+
+## 1.8.1 — 2026-05-02
+
+### Changed
+- m alias detaches tmux (mobile mode), v alias re-attaches to existing tmux session
+- Switch freely between Vibe and bash with v and m
+
